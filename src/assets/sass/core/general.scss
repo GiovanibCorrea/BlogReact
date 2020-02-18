@@ -1,0 +1,41 @@
+@import "assets/sass/core/variables.scss";
+
+body {
+    background-color: $background-color-2;
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+}
+
+ul {
+    margin: 0px;
+
+    li {
+        list-style: none;
+    }
+}
+
+.header {
+    background-color: $primary-color;
+    color: $font-color-2;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    li {
+        margin-left: 10px;
+
+        a {
+            color: $font-color-2;
+        }
+    }
+
+    h1 {
+        font-weight: 400;
+    }
+
+}

@@ -4,11 +4,12 @@ import Main from "./Main";
 import * as serviceWorker from './serviceWorker';
 import { IntlProvider } from 'react-intl';
 
-ReactDOM.render(
+ReactDOM.render((
     <IntlProvider locale="en">
-        <Main/>, 
-    </IntlProvider>,
+        <Main/>
+    </IntlProvider>
+    ),
     document.getElementById("root")
 );
-
+    
 serviceWorker.unregister();

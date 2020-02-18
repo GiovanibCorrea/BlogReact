@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { FormattedDate } from "react-intl";
-import { NavLink } from "react-router-dom";
 
 import publishesApi from "../services/publishesApi";
 import authorApi from "../services/authorApi";
 
-export default class Publishes extends Component {
+export default class PublishesByAuthor extends Component {
   state = {
     posts: [],
     authors: [],
@@ -23,26 +22,37 @@ export default class Publishes extends Component {
   }
 
   loadProducts = async () => {
+    const { id } = this.props.match.params;
+
     const response = await publishesApi.get();
     this.setState({ posts: response.data });
     
     const responses = await authorApi.get();
     this.setState({ authors: responses.data });
+    
+    if(id){
+      var newString = id;
+      const Publish = this.state.posts;
 
-    this.setState({filterPublishes: this.state.posts});
+      const result = Publish.filter(item => item.metadata.authorId == newString)
+      this.setState({filterPublishes: result});
+    }
+    else{
+      this.setState({filterPublishes: this.state.posts});
+    }
   };
 
   ascendingSort = e => {
-    const { posts } = this.state;
-    this.setState({ posts: posts });
-    posts.sort((a, b) => a.metadata.publishedAt - b.metadata.publishedAt);
+    const { filterPublishes } = this.state;
+    this.setState({ filterPublishes: filterPublishes });
+    filterPublishes.sort((a, b) => a.metadata.publishedAt - b.metadata.publishedAt);
     e.preventDefault();
   };
 
   descendingSort = e => {
-    const { posts } = this.state;
-    this.setState({ posts: posts });
-    posts.sort((a, b) => b.metadata.publishedAt - a.metadata.publishedAt);
+    const { filterPublishes } = this.state;
+    this.setState({ filterPublishes: filterPublishes });
+    filterPublishes.sort((a, b) => b.metadata.publishedAt - a.metadata.publishedAt);
     e.preventDefault();
   };
 
@@ -64,15 +74,7 @@ export default class Publishes extends Component {
 					<button onClick={this.descendingSort}>
 						+ Novos
 					</button>
-       
-          Autores: 
-          {this.state.authors.map(author => (
-            <div key={author.id}>
-              <NavLink to={"/publishesbyauthor/" + author.id}>
-                {author.name}
-              </NavLink>
-            </div>
-          ))}
+
 				</div>
 
 				<div className="publications">
@@ -87,7 +89,7 @@ export default class Publishes extends Component {
               <div classname="article">
                 {publishe.body}
               </div>
-              
+
               <div className="date">
                 <FormattedDate
                   value={publishe.metadata.publishedAt}
@@ -95,7 +97,7 @@ export default class Publishes extends Component {
                   month="long"
                   year="numeric"
                 />
-              </div>              
+              </div>
             </div>
 					))}
 				</div>

@@ -1,0 +1,25 @@
+@import "assets/sass/core/variables.scss";
+
+.publications {
+    margin: 0 10%;
+
+    .box-publication {
+        padding: 25px 35px;
+        background-color: $font-color-2;
+        margin-top: 20px;
+
+        .name {
+            margin: 0 0 7px 0;
+        }
+
+        .author {
+            color: $primary-color;
+            margin-bottom: 15px;
+        }
+
+        .date {
+            font-style: italic;
+            font-size: 14px;
+        }
+    }
+}
