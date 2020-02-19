@@ -3,27 +3,12 @@ import { Route, NavLink, HashRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Publishes from "./pages/Publishes";
 import PublishesByAuthor from "./pages/PublishesByAuthor";
-import authorApi from "./services/authorApi";
 import './App.scss';
 
 class Main extends Component {
-  state = {
-    authors: [],
-  };
 
   componentDidMount() {
-    this.loadProducts();
-
-    this.setState({
-      authors: this.state.authors,
-      filteredAuthors: this.state.authors
-    })
   }
-
-  loadProducts = async () => {
-    const responses = await authorApi.get();
-    this.setState({ authors: responses.data });
-  };
 
   render() {
     return (

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { FormattedDate } from "react-intl";
-
 import publishesApi from "../services/publishesApi";
 import authorApi from "../services/authorApi";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class PublishesByAuthor extends Component {
   state = {
@@ -72,13 +73,12 @@ export default class PublishesByAuthor extends Component {
 				<div className="publications publications-int">
           <div className="order-by">
             <button onClick={this.ascendingSort}>
-              + Antigos
+              <FontAwesomeIcon icon={faAngleDown} /> Antigos
             </button>
 
             <button onClick={this.descendingSort}>
-              + Novos
+              <FontAwesomeIcon icon={faAngleUp} /> Novos
             </button>
-
           </div>
 
 					{this.state.filterPublishes.map(publishe => (
