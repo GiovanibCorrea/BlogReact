@@ -1,7 +1,11 @@
 @import "assets/sass/core/variables.scss";
 
 .publications {
-    margin: 0 10%;
+    margin: 0 10% 50px 10%;
+
+    &.publications-int {
+        display: inline-grid;
+    }
 
     .box-publication {
         padding: 25px 35px;
@@ -15,6 +19,11 @@
         .author {
             color: $primary-color;
             margin-bottom: 15px;
+        }
+
+        .article {
+            color: $font-color-1;
+            margin-bottom: 20px;
         }
 
         .date {

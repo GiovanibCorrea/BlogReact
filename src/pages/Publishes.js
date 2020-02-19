@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { FormattedDate } from "react-intl";
 import { NavLink } from "react-router-dom";
-
 import publishesApi from "../services/publishesApi";
 import authorApi from "../services/authorApi";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class Publishes extends Component {
   state = {
@@ -56,49 +61,59 @@ export default class Publishes extends Component {
 		return (
 			<div>
 
-				<div>
-					<button onClick={this.ascendingSort}>
-						+ Antigos
-					</button>
+        <div className="inner-list">
+          <div className="publications publications-int">
+            <div className="order-by">
+              <button onClick={this.ascendingSort}>
+                <FontAwesomeIcon icon={faAngleDown} /> Antigos
+              </button>
 
-					<button onClick={this.descendingSort}>
-						+ Novos
-					</button>
-       
-          Autores: 
-          {this.state.authors.map(author => (
-            <div key={author.id}>
-              <NavLink to={"/publishesbyauthor/" + author.id}>
-                {author.name}
-              </NavLink>
+              <button onClick={this.descendingSort}>
+                <FontAwesomeIcon icon={faAngleUp} /> Novos
+              </button>
             </div>
-          ))}
-				</div>
 
-				<div className="publications">
-					{this.state.filterPublishes.map(publishe => (
-            <div className="box-publication" key={publishe.title}>
-              <h2 className="name">{publishe.title}</h2>
+            {this.state.filterPublishes.map(publishe => (
+              <div className="box-publication" key={publishe.title}>
+                <h2 className="name">{publishe.title}</h2>
 
-              <div className="author">
-                {this.getAuthorName(publishe)}
+                <div className="author">
+                  <FontAwesomeIcon icon={faUser} />
+
+                  {this.getAuthorName(publishe)}
+                </div>
+
+                <div className="article">
+                  {publishe.body}
+                </div>
+                
+                <div className="date">
+                  <FontAwesomeIcon icon={faCalendarAlt} />
+
+                  <FormattedDate
+                    value={publishe.metadata.publishedAt}
+                    day="numeric"
+                    month="long"
+                    year="numeric"
+                  />
+                </div>              
               </div>
+            ))}
+          </div>
 
-              <div classname="article">
-                {publishe.body}
+          <div className="authors-list">
+            <span>Autores: </span>
+
+            {this.state.authors.map(author => (
+              <div key={author.id}>
+                <NavLink to={"/publishesbyauthor/" + author.id}>
+                  <FontAwesomeIcon icon={faUser} />
+                  {author.name}
+                </NavLink>
               </div>
-              
-              <div className="date">
-                <FormattedDate
-                  value={publishe.metadata.publishedAt}
-                  day="numeric"
-                  month="long"
-                  year="numeric"
-                />
-              </div>              
-            </div>
-					))}
-				</div>
+            ))}
+          </div>
+        </div>
 			</div>
 		);
   }

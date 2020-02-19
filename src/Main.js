@@ -30,9 +30,9 @@ class Main extends Component {
         <HashRouter>
             <div>
                 <ul className="header">
-                    <h1>Simple SPA</h1>
+                    <h1>Blog React Axur</h1>
                     <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/publishes">Publishes</NavLink></li>
+                    <li><NavLink to="/publishes">Publicações</NavLink></li>
                 </ul>
                 <div className="content">
                     <Route exact path="/" component={Home}/>

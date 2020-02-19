@@ -3,6 +3,10 @@ import publishesApi from "../services/publishesApi";
 import authorApi from "../services/authorApi";
 import { FormattedDate } from "react-intl";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+
 export default class Home extends Component {
   	state = {
 	    posts: [],
@@ -42,10 +46,14 @@ export default class Home extends Component {
                           <h2 className="name" key={post.title}>{post.title}</h2>
 
                           <div className="author">
+                            <FontAwesomeIcon icon={faUser} />
+
                             {this.getAuthorName(post)}
                           </div>
                           
                           <div className="date">
+                            <FontAwesomeIcon icon={faCalendarAlt} />
+                            
                             <FormattedDate
                               value={post.metadata.publishedAt}
                               day="2-digit"

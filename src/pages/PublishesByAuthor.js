@@ -4,6 +4,10 @@ import { FormattedDate } from "react-intl";
 import publishesApi from "../services/publishesApi";
 import authorApi from "../services/authorApi";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+
 export default class PublishesByAuthor extends Component {
   state = {
     posts: [],
@@ -65,32 +69,35 @@ export default class PublishesByAuthor extends Component {
   render() {
 		return (
 			<div>
+				<div className="publications publications-int">
+          <div className="order-by">
+            <button onClick={this.ascendingSort}>
+              + Antigos
+            </button>
 
-				<div>
-					<button onClick={this.ascendingSort}>
-						+ Antigos
-					</button>
+            <button onClick={this.descendingSort}>
+              + Novos
+            </button>
 
-					<button onClick={this.descendingSort}>
-						+ Novos
-					</button>
+          </div>
 
-				</div>
-
-				<div className="publications">
 					{this.state.filterPublishes.map(publishe => (
             <div className="box-publication" key={publishe.title}>
               <h2 className="name">{publishe.title}</h2>
 
               <div className="author">
+                <FontAwesomeIcon icon={faUser} />
+
                 {this.getAuthorName(publishe)}
               </div>
 
-              <div classname="article">
+              <div className="article">
                 {publishe.body}
               </div>
 
               <div className="date">
+                <FontAwesomeIcon icon={faCalendarAlt} />
+
                 <FormattedDate
                   value={publishe.metadata.publishedAt}
                   day="numeric"

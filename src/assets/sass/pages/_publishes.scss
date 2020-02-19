@@ -1,0 +1,51 @@
+@import "assets/sass/core/variables.scss";
+
+.order-by {
+    float: right;
+    margin: 20px 0;
+    text-align: right;
+    
+    button {
+        border: 1px solid $primary-color;
+        color: $primary-color;
+        cursor: pointer;
+        font-size: 16px;
+        background-color: $background-color-2;
+        padding: 5px 10px;
+
+        &:hover {
+            background: $primary-color;
+            color: $font-color-2;
+        }
+
+        &:first-child {
+            margin-right: 15px;
+        }
+    } 
+}
+
+.inner-list {
+    margin: 0 10%;
+    display: inline-block;
+
+    .publications {
+        width: 70%;
+        float: left;
+        margin-right: 50px;
+        margin-left: 0px;
+    }
+
+    .authors-list {
+        width: calc(25% - 50px);
+        float: left;
+        margin-top: 20px;
+
+        span{
+            font-size: 18px;
+        }
+
+        div {
+            margin-top: 10px;
+        }
+    }
+}
